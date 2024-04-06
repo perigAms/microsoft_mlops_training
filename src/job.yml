@@ -1,15 +1,16 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
-code: model
+type: command
+code: src\model
 command: >-
-  python 
-  --
-  --
+  python train.py
+  --training_data "production\data"
+  --reg_rate 0.1
 inputs:
   training_data: 
     type: uri_folder 
-    path: 
+    path: production\data
   reg_rate: 0.01
-environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: 
-experiment_name: 
-description: 
+environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # experiment_env:1
+compute: ci5212443b6ae64632ae
+experiment_name: mlops_tr_ex_1
+description: mlops_tr_ex_1
