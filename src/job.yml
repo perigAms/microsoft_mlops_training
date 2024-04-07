@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 type: command
-code: C:\Users\igors\PythonFiles\microsoft_mlops_training\microsoft_mlops_training\src\model
+code: https://github.com/perigAms/microsoft_mlops_training/tree/main/src/model
 command: >-
   python train.py
   --training_data "production\data"
