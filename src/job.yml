@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 type: command
-code: src\model
+code: C:\Users\igors\PythonFiles\microsoft_mlops_training\microsoft_mlops_training\src\model
 command: >-
   python train.py
   --training_data "production\data"
@@ -8,7 +8,7 @@ command: >-
 inputs:
   training_data: 
     type: uri_folder 
-    path: production\data
+    path: https://github.com/perigAms/microsoft_mlops_training/tree/main/production/data
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # experiment_env:1
 compute: ci5212443b6ae64632ae
