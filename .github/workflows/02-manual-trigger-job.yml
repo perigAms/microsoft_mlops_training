@@ -16,5 +16,9 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Trigger model training
-      run: az ml job create --file .github/workflows/02-manual-trigger-job.yml
+      run: >-
+          az ml job create
+          --file .github/workflows/02-manual-trigger-job.yml
+          --resource-group rg-dp100-labs
+          --workspace-name mlw-dp100-labs
 
