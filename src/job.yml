@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 type: command
-code: src/model
+code: model
 command: >-
   python train.py
   --training_data "production\data"
