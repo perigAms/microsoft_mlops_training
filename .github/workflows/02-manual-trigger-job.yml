@@ -9,8 +9,8 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v2
-    - name: Check out repo
-      uses: actions/checkout@main
+    #- name: Check out repo
+      #uses: actions/checkout@main
     - name: Install az ml extension
       run: az extension add -n ml -y
     - name: Azure login
