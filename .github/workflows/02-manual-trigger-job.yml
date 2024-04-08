@@ -20,7 +20,7 @@ jobs:
     - name: Trigger model training
       run: >-
           az ml job create
-          --file .github/workflows/02-manual-trigger-job.yml
+          --file src/job.yml
           --resource-group rg-dp100-labs
           --workspace-name mlw-dp100-labs
 
