@@ -6,9 +6,10 @@ command: >-
   --training_data "production\data"
   --reg_rate 0.1
 inputs:
-  training_data: 
+  my_data_input:
     type: uri_folder 
-    path: https://github.com/perigAms/microsoft_mlops_training/tree/main/production/data
+    path: azureml://datastores/dbricksstorageigor/paths/microsoft-mlops-training/production/data
+    mode: ro_mount
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # experiment_env:1
 compute: myComputeCluster
