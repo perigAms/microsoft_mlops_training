@@ -4,7 +4,7 @@ name: Run Tests on Push
 on:
   push:
     branches:
-      - feature/**
+      - feature1/**
 
 jobs:
   test:
