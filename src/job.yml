@@ -7,8 +7,8 @@ command: >-
   --reg_rate 0.1
 inputs:
   my_data_input:
-    type: uri_folder 
-    path: azureml://datastores/dbricksstorageigor/paths/microsoft-mlops-training/production/data
+    type: uri_folder
+    path: azureml://datastores/microsoft_mlops_training/paths/production/data
     mode: ro_mount
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # experiment_env:1
