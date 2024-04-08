@@ -3,14 +3,17 @@ type: command
 code: model
 command: >-
   python train.py
-  --training_data "production\data"
-  --reg_rate 0.1
+  --training_data ${{ inputs.my_data_input }}
+  --reg_rate ${{ inputs.reg_rate }}
+
 inputs:
   my_data_input:
     type: uri_folder
     path: azureml://datastores/microsoft_mlops_training/paths/production/data
     mode: ro_mount
-  reg_rate: 0.01
+  reg_rate:
+    type: number
+    default: 0.1
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # experiment_env:1
 compute: myComputeCluster
 experiment_name: mlops_tr_ex_1
