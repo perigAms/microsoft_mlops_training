@@ -6,7 +6,7 @@ on:
     branches:
       - feature1
       - feature1/**
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   test:
