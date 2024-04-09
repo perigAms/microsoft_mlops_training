@@ -2,10 +2,10 @@ name: Run Tests on Push 6
 
 
 on:
-  push:
-    branches:
-      - feature1
-      - feature1/**
+  #push:
+    #branches:
+      #- feature1
+      #- feature1/**
   pull_request:
     branches:
       - main
