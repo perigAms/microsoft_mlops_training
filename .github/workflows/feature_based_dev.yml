@@ -1,4 +1,4 @@
-name: Run Tests on Push 4
+name: Run Tests on Push 5
 
 
 on:
@@ -6,6 +6,9 @@ on:
     branches:
       - feature1
       - feature1/**
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
