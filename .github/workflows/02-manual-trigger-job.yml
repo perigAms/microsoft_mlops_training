@@ -1,7 +1,7 @@
 name: Manually trigger an Azure Machine Learning job
 
 on:
-push:
+  push:
     branches:
       - dev
   workflow_dispatch:
