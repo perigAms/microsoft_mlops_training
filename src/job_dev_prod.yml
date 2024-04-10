@@ -9,7 +9,8 @@ command: >-
 inputs:
   my_data_input:
     type: uri_folder
-    path: azureml:microsoft_mlops_training_dev2:1
+    #path: azureml:microsoft_mlops_training_dev2:1
+    path: azureml://datastores/dbricksstorageigor/paths/microsoft-mlops-training-dev/development/data
     mode: ro_mount
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # experiment_env:1
 compute: myComputeCluster
