@@ -1,0 +1,17 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+type: command
+code: model
+command: >-
+  python train.py
+  --training_data ${{ inputs.my_data_input }}
+  --reg_rate 0.1
+
+inputs:
+  my_data_input:
+    type: uri_folder
+    path: azureml:microsoft_mlops_training_dev2:1
+    mode: ro_mount
+environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # experiment_env:1
+compute: myComputeCluster
+experiment_name: mlops_tr_ex_1
+description: mlops_tr_ex_1
