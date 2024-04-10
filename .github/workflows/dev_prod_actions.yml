@@ -68,4 +68,4 @@ jobs:
           --workspace-name mlw-dp100-labs
         env:
           #DATA_PATH: 'azureml:https://dbricksstorageigor.blob.core.windows.net/microsoft-mlops-training/production/data'
-          DATA_PATH: azureml://datastores/dbricksstorageigor/paths/microsoft-mlops-training/production/data
+          DATA_PATH: 'azureml://datastores/microsoft-mlops-training/paths/production/data'
