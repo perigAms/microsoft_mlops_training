@@ -26,7 +26,7 @@ def main(args):
 
 def split_data(df):
     X, y = df[['Pregnancies', 'PlasmaGlucose', 'DiastolicBloodPressure',
-               'TricepsThickness', 'SerumInsulin', 'BMI', 
+               'TricepsThickness', 'SerumInsulin', 'BMI',
                'DiabetesPedigree', 'Age']].values, df['Diabetic'].values
 
     X_train, X_test, y_train, y_test = \

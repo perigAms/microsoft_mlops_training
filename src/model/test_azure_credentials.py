@@ -8,7 +8,7 @@ workspace = run.experiment.workspace
 
 try:
     # Access the registered dataset by its name
-    dataset = Dataset.get_by_name(workspace, \
+    dataset = Dataset.get_by_name(workspace, 
                                   name='microsoft_mlops_training_dev')
 
     df = dataset.to_pandas_dataframe()
