@@ -1,11 +1,13 @@
-name: Dev Prod Actions
+name: Dev Prod Actions 2
 
 
 on:
+  workflow_dispatch:
+  
   pull_request:
     branches:
       - main
-  workflow_dispatch:
+  
 
 jobs:
   train_on_dev:
