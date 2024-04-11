@@ -26,9 +26,8 @@ def main(args):
 
 def split_data(df):
     X, y = df[['Pregnancies', 'PlasmaGlucose', 'DiastolicBloodPressure',
-               'TricepsThickness', 'SerumInsulin', 'BMI',
-               'DiabetesPedigree', 'Age']].values,\
-    df['Diabetic'].values
+               'TricepsThickness', 'SerumInsulin', 'BMI', 
+               'DiabetesPedigree', 'Age']].values, df['Diabetic'].values
 
     X_train, X_test, y_train, y_test = \
         train_test_split(X, y, test_size=0.30, random_state=0)
