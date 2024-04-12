@@ -9,10 +9,13 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
+from azureml.core import Run
+
 
 # define functions
 def main(args):
-    # TO DO: enable autologging
+    # Start an Azure ML run in the current context
+    run = Run.get_context()
 
     # read data
     df = get_csvs_df(args.training_data)
@@ -21,7 +24,17 @@ def main(args):
     X_train, X_test, y_train, y_test = split_data(df)
 
     # train model
-    train_model(args.reg_rate, X_train, X_test, y_train, y_test)
+    model = train_model(args.reg_rate, X_train, X_test, y_train, y_test)
+
+    # Log the regularization rate
+    run.log('Regularization Rate', args.reg_rate)
+
+     # Register the model
+    model_path = "outputs/model.pkl"
+    model.save(model_path)
+    run.upload_file("outputs/model.pkl", model_path)
+    run.register_model(model_name='logistic_regression_model', model_path='outputs/model.pkl', tags={'Training context':'Script'})
+    run.complete()
 
 
 def split_data(df):
@@ -49,7 +62,9 @@ def get_csvs_df(path):
 
 def train_model(reg_rate, X_train, X_test, y_train, y_test):
     # train model
-    LogisticRegression(C=1/reg_rate, solver="liblinear").fit(X_train, y_train)
+    model = LogisticRegression(C=1/reg_rate, solver="liblinear").fit(X_train, y_train)
+    
+    return model
 
 
 def parse_args():
