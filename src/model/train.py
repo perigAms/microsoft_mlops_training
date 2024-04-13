@@ -29,7 +29,7 @@ def main(args):
     # Log the regularization rate
     run.log('Regularization Rate', args.reg_rate)
 
-    if args.prod=='1':
+    if args.prod == '1':
         # Register the model
         model_path = "outputs/model.pkl"
         model.save(model_path)
@@ -68,7 +68,7 @@ def train_model(reg_rate, X_train, X_test, y_train, y_test):
     # train model
     model = LogisticRegression(C=1/reg_rate, solver="liblinear")
     model.fit(X_train, y_train)
-    
+
     return model
 
 
