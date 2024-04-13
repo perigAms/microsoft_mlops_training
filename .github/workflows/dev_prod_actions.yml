@@ -44,7 +44,7 @@ jobs:
           --workspace-name mlw-dp100-labs
           
   train_on_prod:
-    if: github.event.pull_request.head.ref == 'dev'
+    if: github.event.pull_request.head.ref == 'prod'
     runs-on: ubuntu-latest
     environment: prod
     steps:
@@ -65,9 +65,11 @@ jobs:
         run: >-
           az ml job create
           --file src/job_dev_prod.yml
-          --set inputs.my_data_input.path=${{ env.DATA_PATH }} 
+          --set inputs.my_data_input.path=${{ env.DATA_PATH }}
+          --set inputs.dev_prod=${{ env.DEV_PROD }}
           --resource-group rg-dp100-labs
           --workspace-name mlw-dp100-labs
         env:
           #DATA_PATH: 'azureml:https://dbricksstorageigor.blob.core.windows.net/microsoft-mlops-training/production/data'
           DATA_PATH: 'azureml://datastores/microsoft_mlops_training/paths/production/data'
+          DEV_PROD: '1'
