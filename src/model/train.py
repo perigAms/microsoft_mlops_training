@@ -29,12 +29,16 @@ def main(args):
     # Log the regularization rate
     run.log('Regularization Rate', args.reg_rate)
 
-     # Register the model
-    model_path = "outputs/model.pkl"
-    model.save(model_path)
-    run.upload_file("outputs/model.pkl", model_path)
-    run.register_model(model_name='logistic_regression_model', model_path='outputs/model.pkl', tags={'Training context':'Script'})
-    run.complete()
+    if args.prod=='1':
+        # Register the model
+        model_path = "outputs/model.pkl"
+        model.save(model_path)
+        run.upload_file("outputs/model.pkl", model_path)
+        run.register_model(
+            model_name='logistic_regression_model',
+            model_path='outputs/model.pkl',
+            tags={'Training context': 'Script'})
+        run.complete()
 
 
 def split_data(df):
@@ -62,7 +66,8 @@ def get_csvs_df(path):
 
 def train_model(reg_rate, X_train, X_test, y_train, y_test):
     # train model
-    model = LogisticRegression(C=1/reg_rate, solver="liblinear").fit(X_train, y_train)
+    model = LogisticRegression(C=1/reg_rate, solver="liblinear")
+    model.fit(X_train, y_train)
     
     return model
 

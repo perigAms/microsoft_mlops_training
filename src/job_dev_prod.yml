@@ -5,6 +5,7 @@ command: >-
   python train.py
   --training_data ${{ inputs.my_data_input }}
   --reg_rate 0.1
+  --dev_prod '0'
 
 inputs:
   my_data_input:
