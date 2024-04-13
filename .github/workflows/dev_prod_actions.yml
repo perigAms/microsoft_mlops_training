@@ -46,7 +46,7 @@ jobs:
           --workspace-name mlw-dp100-labs
           
   train_on_prod:
-    if: github.event.pull_request.head.ref == 'prod'
+    if: github.event.pull_request.head.ref == 'dev'
     runs-on: ubuntu-latest
     environment: prod
     steps:
