@@ -3,6 +3,7 @@
 import argparse
 import glob
 import os
+import pickle
 
 import pandas as pd
 # import numpy as np
@@ -32,7 +33,9 @@ def main(args):
     if args.dev_prod == '1':
         # Register the model
         model_path = "outputs/model.pkl"
-        model.save(model_path)
+        with open(model_path, 'wb') as file:
+            pickle.dump(model, file)
+
         run.upload_file("outputs/model.pkl", model_path)
         run.register_model(
             model_name='logistic_regression_model',
