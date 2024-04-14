@@ -29,7 +29,7 @@ def main(args):
     # Log the regularization rate
     run.log('Regularization Rate', args.reg_rate)
 
-    if args.prod == '1':
+    if args.dev_prod == '1':
         # Register the model
         model_path = "outputs/model.pkl"
         model.save(model_path)
@@ -81,6 +81,8 @@ def parse_args():
                         type=str)
     parser.add_argument("--reg_rate", dest='reg_rate',
                         type=float, default=0.01)
+    parser.add_argument("--dev_prod", dest='dev_prod',
+                        type=str)
 
     # parse args
     args = parser.parse_args()
