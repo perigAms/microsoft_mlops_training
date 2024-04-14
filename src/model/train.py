@@ -3,16 +3,20 @@
 import argparse
 import glob
 import os
+import pickle
 
 import pandas as pd
 # import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
+from azureml.core import Run
+
 
 # define functions
 def main(args):
-    # TO DO: enable autologging
+    # Start an Azure ML run in the current context
+    run = Run.get_context()
 
     # read data
     df = get_csvs_df(args.training_data)
@@ -21,14 +25,29 @@ def main(args):
     X_train, X_test, y_train, y_test = split_data(df)
 
     # train model
-    train_model(args.reg_rate, X_train, X_test, y_train, y_test)
+    model = train_model(args.reg_rate, X_train, X_test, y_train, y_test)
+
+    # Log the regularization rate
+    run.log('Regularization Rate', args.reg_rate)
+
+    if args.dev_prod == '1':
+        # Register the model
+        model_path = "outputs/model.pkl"
+        with open(model_path, 'wb') as file:
+            pickle.dump(model, file)
+
+        run.upload_file("outputs/model.pkl", model_path)
+        run.register_model(
+            model_name='logistic_regression_model',
+            model_path='outputs/model.pkl',
+            tags={'Training context': 'Script'})
+        run.complete()
 
 
 def split_data(df):
     X, y = df[['Pregnancies', 'PlasmaGlucose', 'DiastolicBloodPressure',
                'TricepsThickness', 'SerumInsulin', 'BMI',
-               'DiabetesPedigree', 'Age']].values,
-    df['Diabetic'].values
+               'DiabetesPedigree', 'Age']].values, df['Diabetic'].values
 
     X_train, X_test, y_train, y_test = \
         train_test_split(X, y, test_size=0.30, random_state=0)
@@ -50,7 +69,10 @@ def get_csvs_df(path):
 
 def train_model(reg_rate, X_train, X_test, y_train, y_test):
     # train model
-    LogisticRegression(C=1/reg_rate, solver="liblinear").fit(X_train, y_train)
+    model = LogisticRegression(C=1/reg_rate, solver="liblinear")
+    model.fit(X_train, y_train)
+
+    return model
 
 
 def parse_args():
@@ -62,6 +84,8 @@ def parse_args():
                         type=str)
     parser.add_argument("--reg_rate", dest='reg_rate',
                         type=float, default=0.01)
+    parser.add_argument("--dev_prod", dest='dev_prod',
+                        type=str)
 
     # parse args
     args = parser.parse_args()
