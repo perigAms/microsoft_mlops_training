@@ -14,7 +14,9 @@ inputs:
     path: azureml://datastores/microsoft_mlops_training_dev/paths/development/data
     mode: ro_mount
   dev_prod: '0'
-environment: "AzureMl:sklearn-1.0:30"
+environment:
+  name: "sklearn-1.0"
+  version: "30"
 # azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # experiment_env:1
 compute: myComputeCluster
 experiment_name: mlops_tr_ex_1
