@@ -16,7 +16,8 @@ inputs:
   dev_prod: '0'
 environment:
   name: sklearn-1.0
-  version: latest
+  version: "30"
+  type: "curated"
 # azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest  # experiment_env:1  # azureml:AzureMl-sklearn-1.0@latest
 compute: myComputeCluster
 experiment_name: mlops_tr_ex_1
