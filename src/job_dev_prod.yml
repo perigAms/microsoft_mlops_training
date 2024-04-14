@@ -15,8 +15,9 @@ inputs:
     mode: ro_mount
   dev_prod: '0'
 environment:
-  docker:
-    image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:20240403.v1
+  image: "mcr.microsoft.com/azureml/curated/sklearn-1.0:30"
+  #docker:
+    #image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:20240403.v1
 
   #name: sklearn-1.0
   #version: "30"
